@@ -5,7 +5,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:intl/intl.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
@@ -195,10 +194,7 @@ class _CardSettingsDateTimePickerState extends FormFieldState<DateTime> {
   }
 
   Widget _build(BuildContext context) {
-    if (showCupertino(context, widget.showMaterialonIOS))
-      return _cupertinoSettingsButton();
-    else
-      return _materialSettingsButton();
+    return _materialSettingsButton();
   }
 
   Widget _buildCupertinoBottomPicker(Widget picker) {
@@ -220,47 +216,6 @@ class _CardSettingsDateTimePickerState extends FormFieldState<DateTime> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _cupertinoSettingsButton() {
-    final ls = labelStyle(context, widget.enabled);
-    return Container(
-      child: widget.visible == false
-          ? null
-          : GestureDetector(
-              onTap: () {
-                if (widget.enabled) _showDialog();
-              },
-              child: CSControl(
-                nameWidget: Container(
-                  width: widget.labelWidth ??
-                      CardSettings.of(context)?.labelWidth ??
-                      120.0,
-                  child: widget.requiredIndicator != null
-                      ? Text(
-                          (widget.label) + ' *',
-                          style: ls,
-                        )
-                      : Text(
-                          widget.label,
-                          style: ls,
-                        ),
-                ),
-                contentWidget: Flexible(
-                  child: Text(
-                    value == null
-                        ? ''
-                        : DateFormat.yMd().add_jm().format(value!),
-                    style: contentStyle(context, value, widget.enabled),
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: widget.contentAlign ??
-                        CardSettings.of(context)?.contentAlign,
-                  ),
-                ),
-                style: CSWidgetStyle(icon: widget.icon),
-              ),
-            ),
     );
   }
 

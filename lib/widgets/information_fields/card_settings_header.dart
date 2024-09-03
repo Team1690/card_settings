@@ -2,8 +2,6 @@
 // is governed by the MIT license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
-import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
 import '../card_settings_panel.dart';
 import '../card_settings_widget.dart';
@@ -52,20 +50,7 @@ class CardSettingsHeader extends StatelessWidget implements CardSettingsWidget {
     if (!visible) return Container();
     if (child != null) return child ?? Container();
 
-    if (showCupertino(context, showMaterialonIOS))
-      return _cupertinoHeader(context);
-    else
-      return _materialHeader(context);
-  }
-
-  Widget _cupertinoHeader(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: CSHeader(label),
-        ),
-      ],
-    );
+    return _materialHeader(context);
   }
 
   Widget _materialHeader(BuildContext context) {

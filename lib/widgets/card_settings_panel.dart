@@ -2,7 +2,6 @@
 // is governed by the MIT license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:orbit_card_settings/card_settings.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
@@ -132,16 +131,7 @@ class _CardSettingsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (showCupertino(null, showMaterialonIOS))
-        ? _buildCupertinoWrapper()
-        : _buildMaterialWrapper(context);
-  }
-
-  Widget _buildCupertinoWrapper() {
-    return CupertinoSettings(
-      items: children,
-      shrinkWrap: shrinkWrap!,
-    );
+    return _buildMaterialWrapper(context);
   }
 
   Widget _buildMaterialWrapper(BuildContext context) {

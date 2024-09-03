@@ -3,7 +3,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
@@ -193,46 +192,7 @@ class _CardSettingsRadioPickerState<T> extends FormFieldState<T> {
       }
     }
 
-    if (showCupertino(context, widget.showMaterialonIOS))
-      return _cupertinoSettingsListPicker(content);
-    else
-      return _materialSettingsListPicker(content);
-  }
-
-  Widget _cupertinoSettingsListPicker(String content) {
-    final ls = labelStyle(context, widget.enabled);
-    return Container(
-      child: widget.visible == false
-          ? null
-          : GestureDetector(
-              onTap: () {
-                if (widget.enabled) _showDialog(widget.label);
-              },
-              child: CSControl(
-                nameWidget: Container(
-                  width: widget.labelWidth ??
-                      CardSettings.of(context)?.labelWidth ??
-                      120.0,
-                  child: widget.requiredIndicator != null
-                      ? Text(
-                          (widget.label) + ' *',
-                          style: ls,
-                        )
-                      : Text(
-                          widget.label,
-                          style: ls,
-                        ),
-                ),
-                contentWidget: Text(
-                  content,
-                  style: contentStyle(context, value, widget.enabled),
-                  textAlign: widget.contentAlign ??
-                      CardSettings.of(context)?.contentAlign,
-                ),
-                style: CSWidgetStyle(icon: widget.icon),
-              ),
-            ),
-    );
+    return _materialSettingsListPicker(content);
   }
 
   Widget _materialSettingsListPicker(String content) {

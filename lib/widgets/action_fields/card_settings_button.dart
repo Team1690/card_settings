@@ -2,8 +2,6 @@
 // is governed by the MIT license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
-import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
 import '../../interfaces/minimum_field_properties.dart';
 
@@ -57,10 +55,7 @@ class CardSettingsButton extends StatelessWidget
         Theme.of(context).textTheme.labelLarge!.copyWith(color: textColor);
 
     if (visible) {
-      if (showCupertino(context, showMaterialonIOS))
-        return _showCuppertinoButton();
-      else
-        return _showMaterialButton(context, buttonStyle);
+      return _showMaterialButton(context, buttonStyle);
     } else {
       return Container();
     }
@@ -96,20 +91,6 @@ class CardSettingsButton extends StatelessWidget
             ? onPressed
             : null, // to disable, we need to not provide an onPressed function
       ),
-    );
-  }
-
-  Widget _showCuppertinoButton() {
-    return Container(
-      child: visible == false
-          ? null
-          : CSButton(
-              isDestructive
-                  ? CSButtonType.DESTRUCTIVE
-                  : CSButtonType.DEFAULT_CENTER,
-              label,
-              onPressed,
-            ),
     );
   }
 }

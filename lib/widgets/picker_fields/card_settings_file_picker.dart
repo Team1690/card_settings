@@ -6,7 +6,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:orbit_card_settings/card_settings.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
@@ -143,10 +142,7 @@ class _CardSettingsFilePickerState extends FormFieldState<Uint8List> {
         ? ''
         : CardSettingsFilePicker.formatBytes(value!.length, 2);
 
-    if (showCupertino(context, widget.showMaterialonIOS))
-      return _buildCupertinoFilePicker(formattedValue);
-    else
-      return _buildMaterialFilePicker(formattedValue);
+    return _buildMaterialFilePicker(formattedValue);
   }
 
   void onTap() {
@@ -222,34 +218,6 @@ class _CardSettingsFilePickerState extends FormFieldState<Uint8List> {
         },
       );
     }
-  }
-
-  Widget _buildCupertinoFilePicker(String formattedValue) {
-    final ls = labelStyle(context, widget.enabled);
-    return Container(
-      child: widget.visible == false
-          ? null
-          : GestureDetector(
-              onTap: () {
-                if (widget.enabled) onTap();
-              },
-              child: CSControl(
-                nameWidget: Container(
-                  width: widget.labelWidth ??
-                      CardSettings.of(context)!.labelWidth ??
-                      120.0,
-                  child: widget.requiredIndicator != null
-                      ? Text(
-                          (widget.label) + ' *',
-                          style: ls,
-                        )
-                      : Text(widget.label, style: ls),
-                ),
-                contentWidget: _buildFieldContent(formattedValue),
-                style: CSWidgetStyle(icon: widget.icon),
-              ),
-            ),
-    );
   }
 
   Widget _buildMaterialFilePicker(String formattedValue) {

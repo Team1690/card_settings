@@ -3,7 +3,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
@@ -145,48 +144,7 @@ class _CardSettingsCheckboxPickerState<T> extends FormFieldState<List<T>> {
     // make local mutable copies of values and options
     items = widget.items;
 
-    if (showCupertino(context, widget.showMaterialonIOS))
-      return _cupertinoSettingsMultiselect();
-    else
-      return _materialSettingsMultiselect();
-  }
-
-  Widget _cupertinoSettingsMultiselect() {
-    final ls = labelStyle(context, widget.enabled);
-    return Container(
-      child: widget.visible == false
-          ? null
-          : GestureDetector(
-              onTap: () {
-                if (widget.enabled) _showDialog(widget.label);
-              },
-              child: CSControl(
-                nameWidget: Container(
-                  width: widget.labelWidth ??
-                      CardSettings.of(context)?.labelWidth ??
-                      120.0,
-                  child: widget.requiredIndicator != null
-                      ? Text(
-                          (widget.label) + ' *',
-                          style: ls,
-                        )
-                      : Text(
-                          widget.label,
-                          style: ls,
-                        ),
-                ),
-                contentWidget: Text(
-                  value == null || value!.isEmpty
-                      ? "none selected"
-                      : value!.length == 1
-                          ? "${value![0]}"
-                          : "${value![0]} & ${value!.length - 1} more",
-                  style: contentStyle(context, value, widget.enabled),
-                ),
-                style: CSWidgetStyle(icon: widget.icon),
-              ),
-            ),
-    );
+    return _materialSettingsMultiselect();
   }
 
   Widget _materialSettingsMultiselect() {

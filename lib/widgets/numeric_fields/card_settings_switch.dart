@@ -1,9 +1,7 @@
 // Copyright (c) 2018, codegrue. All rights reserved. Use of this source code
 // is governed by the MIT license that can be found in the LICENSE file.
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
 import '../../card_settings.dart';
@@ -101,8 +99,6 @@ class _CardSettingsSwitchState extends FormFieldState<bool> {
   CardSettingsSwitch get widget => super.widget as CardSettingsSwitch;
 
   Widget _build(BuildContext context) {
-    if (showCupertino(context, widget.showMaterialonIOS))
-      return _cupertinoSettingsSwitch();
     return _materialSettingsSwitch();
   }
 
@@ -140,40 +136,6 @@ class _CardSettingsSwitchState extends FormFieldState<bool> {
           ),
         ),
       ]),
-    );
-  }
-
-  Widget _cupertinoSettingsSwitch() {
-    final ls = labelStyle(context, widget.enabled);
-    return Container(
-      child: widget.visible == false
-          ? null
-          : CSControl(
-              nameWidget: Container(
-                width: widget.labelWidth ??
-                    CardSettings.of(context)?.labelWidth ??
-                    120.0,
-                child: widget.requiredIndicator != null
-                    ? Text(
-                        (widget.label) + ' *',
-                        style: ls,
-                      )
-                    : Text(
-                        widget.label,
-                        style: ls,
-                      ),
-              ),
-              contentWidget: CupertinoSwitch(
-                value: value!,
-                onChanged: (widget.enabled)
-                    ? (value) {
-                        didChange(value);
-                        if (widget.onChanged != null) widget.onChanged!(value);
-                      }
-                    : null, // to disable, we need to not provide an onChanged function
-              ),
-              style: CSWidgetStyle(icon: widget.icon),
-            ),
     );
   }
 }

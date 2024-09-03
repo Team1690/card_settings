@@ -2,7 +2,6 @@
 // is governed by the MIT license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
@@ -158,48 +157,7 @@ class _CardSettingsColorPickerState extends FormFieldState<Color> {
   }
 
   Widget _build(BuildContext context) {
-    if (showCupertino(context, widget.showMaterialonIOS))
-      return _cupertinoSettingsColorPicker();
-    else
-      return _materialSettingsColorPicker();
-  }
-
-  Widget _cupertinoSettingsColorPicker() {
-    final ls = labelStyle(context, widget.enabled);
-    return Container(
-      child: widget.visible == false
-          ? null
-          : GestureDetector(
-              onTap: () {
-                if (widget.enabled) _showDialog();
-              },
-              child: CSControl(
-                nameWidget: Container(
-                  width: widget.labelWidth ??
-                      CardSettings.of(context)?.labelWidth ??
-                      120.0,
-                  child: widget.requiredIndicator != null
-                      ? Text(
-                          (widget.label) + ' *',
-                          style: ls,
-                        )
-                      : Text(
-                          widget.label,
-                          style: ls,
-                        ),
-                ),
-                contentWidget: Container(
-                  height: 20.0,
-                  width: 100.0,
-                  decoration: BoxDecoration(
-                    color: value,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                style: CSWidgetStyle(icon: widget.icon),
-              ),
-            ),
-    );
+    return _materialSettingsColorPicker();
   }
 
   Widget _materialSettingsColorPicker() {

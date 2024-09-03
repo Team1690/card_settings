@@ -3,7 +3,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
 import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
 import '../../card_settings.dart';
@@ -105,10 +104,7 @@ class _CardSettingsTimePickerState extends FormFieldState<TimeOfDay> {
   }
 
   Widget _build(BuildContext context) {
-    if (showCupertino(context, widget.showMaterialonIOS))
-      return _cupertinoSettingsTimePicker();
-    else
-      return _materialSettingsTimePicker();
+    return _materialSettingsTimePicker();
   }
 
   Widget _buildBottomPicker(Widget picker) {
@@ -171,42 +167,6 @@ class _CardSettingsTimePickerState extends FormFieldState<TimeOfDay> {
         if (widget.onChanged != null) widget.onChanged!(_value);
       }
     });
-  }
-
-  Widget _cupertinoSettingsTimePicker() {
-    final ls = labelStyle(context, widget.enabled);
-    return Container(
-      child: widget.visible == false
-          ? null
-          : GestureDetector(
-              onTap: () {
-                if (widget.enabled) _showDialog();
-              },
-              child: CSControl(
-                nameWidget: Container(
-                  width: widget.labelWidth ??
-                      CardSettings.of(context)?.labelWidth ??
-                      120.0,
-                  child: widget.requiredIndicator != null
-                      ? Text(
-                          (widget.label) + ' *',
-                          style: ls,
-                        )
-                      : Text(
-                          widget.label,
-                          style: ls,
-                        ),
-                ),
-                contentWidget: Text(
-                  value == null ? '' : value!.format(context),
-                  style: contentStyle(context, value, widget.enabled),
-                  textAlign: widget.contentAlign ??
-                      CardSettings.of(context)?.contentAlign,
-                ),
-                style: CSWidgetStyle(icon: widget.icon),
-              ),
-            ),
-    );
   }
 
   Widget _materialSettingsTimePicker() {
