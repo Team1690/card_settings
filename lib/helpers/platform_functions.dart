@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:card_settings/widgets/card_settings_panel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:orbit_card_settings/widgets/card_settings_panel.dart';
 
 /// this centralizes code to determine if we want to display the cupertino
 /// version or the material version, since this can be determined by
@@ -47,8 +47,9 @@ TextStyle? labelStyle(BuildContext context, bool enabled) {
 TextStyle? contentStyle(BuildContext context, dynamic value, bool enabled) {
   var theme = Theme.of(context);
   var style = theme.textTheme.titleMedium?.copyWith(
-      color:
-          (value == null) ? theme.hintColor : theme.textTheme.titleMedium?.color);
+      color: (value == null)
+          ? theme.hintColor
+          : theme.textTheme.titleMedium?.color);
   if (!enabled) style = style?.copyWith(color: theme.disabledColor);
   return style;
 }

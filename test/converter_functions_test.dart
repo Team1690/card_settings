@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:card_settings/card_settings.dart';
+import 'package:orbit_card_settings/card_settings.dart';
 
 void main() {
   group('intelligentCast', () {

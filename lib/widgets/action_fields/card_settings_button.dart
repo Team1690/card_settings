@@ -1,9 +1,9 @@
 // Copyright (c) 2018, codegrue. All rights reserved. Use of this source code
 // is governed by the MIT license that can be found in the LICENSE file.
 
-import 'package:card_settings/helpers/platform_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
+import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
 import '../../interfaces/minimum_field_properties.dart';
 
@@ -70,13 +70,13 @@ class CardSettingsButton extends StatelessWidget
     var style = Theme.of(context).textButtonTheme.style ?? ButtonStyle();
     if (backgroundColor != null)
       style = style.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(backgroundColor!));
+          backgroundColor: WidgetStateProperty.all<Color>(backgroundColor!));
     if (textColor != null)
       style = style.copyWith(
-          foregroundColor: MaterialStateProperty.all<Color>(textColor!));
+          foregroundColor: WidgetStateProperty.all<Color>(textColor!));
     if (!enabled)
       style = style.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.grey));
+          backgroundColor: WidgetStateProperty.all<Color>(Colors.grey));
 
     return Container(
       margin: EdgeInsets.only(

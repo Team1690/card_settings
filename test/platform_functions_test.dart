@@ -1,8 +1,8 @@
-import 'package:card_settings/helpers/platform_functions.dart';
-import 'package:card_settings/widgets/card_settings_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:orbit_card_settings/card_settings.dart';
+import 'package:orbit_card_settings/helpers/platform_functions.dart';
 
 void main() {
   group('showCupertino', () {

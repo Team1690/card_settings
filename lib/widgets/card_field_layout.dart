@@ -1,8 +1,8 @@
 // Copyright (c) 2018, codegrue. All rights reserved. Use of this source code
 // is governed by the MIT license that can be found in the LICENSE file.
 
-import 'package:card_settings/widgets/card_settings_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:orbit_card_settings/card_settings.dart';
 
 /// Lays out multiple fields in a row
 class CardFieldLayout extends StatelessWidget implements CardSettingsWidget {

@@ -1,5 +1,10 @@
 # Releases
 
+## [4.0.0] - 2023-05-22
+
+- Orbit card settings
+
+
 ## [3.5.0] - 2023-05-22
 
 - Made `dart fix` automated changes

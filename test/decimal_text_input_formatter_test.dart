@@ -1,5 +1,5 @@
-import 'package:card_settings/helpers/decimal_text_input_formatter.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:orbit_card_settings/helpers/decimal_text_input_formatter.dart';
 
 void main() {
   group('DecimalTextInputFormatter', () {
